@@ -26,17 +26,30 @@ personaCollection.push(
 
 );
 
+
+
+router.get('/:id', (req, res, next)=>{
+	if(!req.params.id) return next();
+	var id = req.params.id;
+	var persona = persona.personaCollection.filter((e, i)=>{
+		return (e.id === id);
+	});
+	
+	if(persona.length > 0 ){
+		res.status(200).json(persona[0]);
+	}else{
+		res.status(404).json({});
+	}
+});
+//metodo get con un id
+
 router.get('/', (req, res, next)=>{
 	res.status(200).json(personaCollection);
 
 });
 //metodo get
 
-router.get('/:id', (req, res, next)=>{
-	res.status(403).json({msg:"not implemented"});
 
-});
-//metodo get con un id
 
 router.post('/', (req, res, next)=>{
 	var newPersona = Object.assign(
