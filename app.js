@@ -6,8 +6,8 @@ var lessMiddleware = require('less-middleware');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var apiRouter = req('./routes/api/api');
+
+var apiRouter = require('./routes/api/api');
 
 var app = express();
 
