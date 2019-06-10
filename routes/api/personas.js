@@ -67,7 +67,16 @@ router.put('/:id', (req, res, next)=>{
 //metodo put
 
 router.delete('/:id', (req, res, next)=>{
-	res.status(403).json({msg:"not implemented"});
+	var id = req.params.id;
+	var deletedPersona = {};
+	personaCollection = personaCollection.filter((e,i)=>{
+		if(e.id === id){
+			deletedPersona = Object.assign({}, e);
+			return false;
+		}
+		return true;
+	});
+	res.status(400).json({d:deletedPersona, c:personaCollection});
 
 });
 //metodo delete
