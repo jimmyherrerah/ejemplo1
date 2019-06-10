@@ -51,9 +51,18 @@ router.post('/', (req, res, next)=>{
 });
 //metodo post
 
-router.put('/', (req, res, next)=>{
-	res.status(403).json({msg:"not implemented"});
-
+router.put('/:id', (req, res, next)=>{
+	var id = req.params.id;
+	var modifiedPersona = {};
+	var originalPersona = {};
+	personaCollection = personaCollection.map((e, i)=>{
+		if(e.id === id){
+			originalPersona = Object.assign({}, e);
+			return modifiedPersona = Object.assign({}, e, req.body);
+		}
+		return e; //retorna en e donde se hace una busqueda en el diccionario de datos
+	});
+	res.status(403).json({ o: originalPersona, m: modifiedPersona});
 });
 //metodo put
 
